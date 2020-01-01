@@ -1,14 +1,13 @@
 package com.jqbss.wordreminder.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class RegisterController {
 
-    @GetMapping("/")
-    public String Home(){
-        return "home";
+    @GetMapping("/register")
+    public String Register(){
+        return "register";
     }
 }
