@@ -11,21 +11,21 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Zarejestruj się</h5>
-                    <form class="form-signin">
+                    <form class="form-signin" th:action="@{/register}" th:object="${user}" method="post">
                         <div class="form-label-group">
-                            <input type="email" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
+                            <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="userLogin" required autofocus>
                             <label for="inputLogin">Login</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Adress Email" required>
+                            <input type="email" id="inputEmail" class="form-control" name="userEmail" placeholder="Adress Email" required>
                             <label for="inputEmail">Adress Email</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Hasło" required>
+                            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Hasło" required>
                             <label for="inputPassword">Hasło</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword2" class="form-control" placeholder="Powtórz hasło" required>
+                            <input type="password" id="inputPassword2" class="form-control"  name="passwordRepeat" placeholder="Powtórz hasło" required>
                             <label for="inputPassword2">Powtórz hasło</label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Zarejestruj się</button>
