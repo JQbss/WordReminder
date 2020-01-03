@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
     private RoleRepository roleRepository;
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByUserEmail(email);
+    public User findByUserLogin(String login) {
+        return userRepository.findByUserLogin(login);
     }
 }

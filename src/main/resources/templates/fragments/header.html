@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="header">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
@@ -18,11 +19,19 @@
             </a>
             <div class="my-2 order-md-2">
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <li class="nav-item order-2 order-md-1">
+                    <li sec:authorize="!isAuthenticated()"  class="nav-item order-2 order-md-1">
                         <a href="/login" class="nav-link" title="signIn">
                             <span class="d-none d-lg-inline">Zaloguj się</span>
                             <i class="fa fa-sign-in-alt fa-fw fa-lg"></i>
                         </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()"  class="nav-item order-2 order-md-1">
+                        <form  name="logoutForm" th:action="@{/logout}" method="post">
+                            <button type="submit" class="nav-link btn btn-link" style="width:auto">
+                                <span class="d-none d-lg-inline">Wyloguj się</span>
+                                <i class="fa fa-sign-out-alt fa-fw fa-lg"></i>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

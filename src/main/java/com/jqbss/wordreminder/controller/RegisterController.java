@@ -26,8 +26,8 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String Register(@ModelAttribute("user") @Valid User user){
-        User checkUser = userService.findUserByEmail(user.getUserEmail());
+    public String Register(User user){
+
         userService.addUser(user);
         return "login";
     }

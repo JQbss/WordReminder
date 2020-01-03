@@ -4,26 +4,19 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long userId;
-    @Column(unique = true, nullable = false, length = 30)
     private String userLogin;
-    @Column(unique = true, nullable = false, length = 50)
     private String userEmail;
-    @Column(nullable = false)
     private String password;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="user_roles",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    @ManyToMany
+    private Set<Role> roles;
 
     public Long getUserId() {
         return userId;
@@ -57,11 +50,11 @@ public class User{
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
