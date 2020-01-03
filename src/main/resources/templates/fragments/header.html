@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org"
                 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -17,17 +18,17 @@
                 <i class="fa fa-user-graduate"></i>
                 <span class="d-none d-lg-inline">Word Reminder</span>
             </a>
-            <div class="my-2 order-md-2">
+            <div class="order-md-2">
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li sec:authorize="!isAuthenticated()"  class="nav-item order-2 order-md-1">
-                        <a href="/login" class="nav-link" title="signIn">
+                        <a href="/login" class="nav-link px-0 py-0" title="signIn">
                             <span class="d-none d-lg-inline">Zaloguj się</span>
                             <i class="fa fa-sign-in-alt fa-fw fa-lg"></i>
                         </a>
                     </li>
                     <li sec:authorize="isAuthenticated()"  class="nav-item order-2 order-md-1">
                         <form  name="logoutForm" th:action="@{/logout}" method="post">
-                            <button type="submit" class="nav-link btn btn-link" style="width:auto">
+                            <button type="submit" class="nav-link btn btn-link px-0 py-0 ">
                                 <span class="d-none d-lg-inline">Wyloguj się</span>
                                 <i class="fa fa-sign-out-alt fa-fw fa-lg"></i>
                             </button>

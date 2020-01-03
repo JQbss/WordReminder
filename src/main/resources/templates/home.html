@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
     <title id="pageTitle">Strona główna</title>
 </head>
 <body>
-    <th:block th:insert="fragments/header :: menu"></th:block>
-
-    <th:block th:insert="fragments/header :: scriptSection"></th:block>
+    <div th:insert="fragments/header :: menu">
+    </div>
+    <div th:insert="fragments/header :: scriptSection">
+    </div>
 </body>
 </html>

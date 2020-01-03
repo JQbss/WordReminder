@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
     <title id="pageTitle">Login</title>
 
 </head>
 <body>
-    <th:block th:insert="fragments/header :: menu"></th:block>
+    <div th:insert="fragments/header :: menu">
+
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Zaloguj się</h5>
-                        <form class="form-signin" th:action="@{/login}" th:object="${user}" method="post">
+                        <form class="form-signin" th:action="@{/login}" method="post">
                             <div class="form-label-group">
                                 <input type="text" id="userLogin" class="form-control" placeholder="login" name="userLogin" required autofocus>
                                 <label for="userLogin">Login</label>
@@ -39,6 +41,7 @@
             </div>
         </div>
     </div>
-    <th:block th:insert="fragments/header :: scriptSection"></th:block>
+    <div th:insert="fragments/header :: scriptSection">
+    </div>
 </body>
 </html>

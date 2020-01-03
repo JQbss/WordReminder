@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" >
 <head th:include="fragments/header :: header">
     <title id="pageTitle">Zarejestruj się</title>
 </head>
 <body>
-<th:block th:insert="fragments/header :: menu"></th:block>
+<div th:insert="fragments/header :: menu">
+</div>
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Zarejestruj się</h5>
+                    <!--/*@thymesVar id="user" type="com.jqbss.wordreminder.model.User"*/-->
                     <form class="form-signin" th:action="@{/register}" th:object="${user}" method="post">
                         <div class="form-label-group">
-                            <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="userLogin" required autofocus>
-                            <label for="inputLogin">Login</label>
+                            <input th:field="*{userLogin}" type="text" id="login" class="form-control" placeholder="Login" name="userLogin" autofocus required>
+                            <label for="login">Login</label>
+                            <p class="text-danger ml-2" th:if="${#fields.hasErrors('userLogin')}" th:errors="*{userLogin}"></p>
                         </div>
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" name="userEmail" placeholder="Adress Email" required>
+                            <input th:field="*{userEmail}" type="email" id="inputEmail" class="form-control" name="userEmail" placeholder="Adress Email" required>
                             <label for="inputEmail">Adress Email</label>
+                            <p class="text-danger ml-2" th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></p>
                         </div>
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Hasło" required>
+                            <input th:field="*{password}" type="password" id="inputPassword" class="form-control" name="password" placeholder="Hasło" required>
                             <label for="inputPassword">Hasło</label>
+                            <p class="text-danger ml-2" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                         </div>
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword2" class="form-control"  name="passwordRepeat" placeholder="Powtórz hasło" required>
+                            <input th:field="*{passwordConfirm}" type="password" id="inputPassword2" class="form-control" name="passwordConfirm" placeholder="Powtórz hasło" required>
                             <label for="inputPassword2">Powtórz hasło</label>
+                            <p class="text-danger ml-2" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></p>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Zarejestruj się</button>
                     </form>
@@ -35,6 +41,9 @@
         </div>
     </div>
 </div>
-<th:block th:insert="fragments/header :: scriptSection"></th:block>
+
+<div th:insert="fragments/header :: scriptSection">
+</div>
+
 </body>
 </html>
