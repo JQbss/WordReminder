@@ -13,6 +13,9 @@ import org.springframework.validation.Validator;
 @Component
 public class UserRegisterValidator implements Validator {
 
+    private static final String LOGIN_PATTERN  = "^[a-zA-Z]+[a-zA-Z0-9.\\-_]{3,25}";
+    private static final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9.,!@#$%^&*(){};\\-]{8,}$";
+
     @Autowired
     UserService userService;
 
@@ -45,6 +48,18 @@ public class UserRegisterValidator implements Validator {
 
         if (user.getPassword().length()<6 || user.getPassword().length()>25){
             errors.rejectValue("password","error.password.length");
+        }
+
+        if(!user.getUserLogin().matches(LOGIN_PATTERN)){
+            errors.rejectValue("userLogin","error.userLogin.pattern");
+        }
+
+        if (user.getUserLogin().length()<4 || user.getUserLogin().length()>25){
+            errors.rejectValue("userLogin","error.userLogin.length");
+        }
+
+        if (!user.getPassword().matches(PASSWORD_PATTERN)){
+            errors.rejectValue("password","error.password.pattern");
         }
     }
 }
