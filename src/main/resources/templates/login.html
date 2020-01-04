@@ -22,6 +22,7 @@
                             <div class="form-label-group">
                                 <input type="password" id="password" class="form-control" placeholder="Hasło" name="password" required>
                                 <label for="password">Hasło</label>
+                                <p class="text-danger ml-2" th:if="${param.error}">Nieprawidłowy login lub hasło</p>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
