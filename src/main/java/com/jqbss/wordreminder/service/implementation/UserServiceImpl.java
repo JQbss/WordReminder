@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role role = roleRepository.findByName("USER");
+        Role role = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Collections.singletonList(role)));
         return userRepository.save(user);
     }
