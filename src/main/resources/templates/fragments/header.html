@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="webjars/font-awesome/5.12.0/css/all.css" />
     <link rel="stylesheet" href="../css/styleForm.css">
+    <link rel="stylesheet" href="../css/mainPage.css">
     <title th:include=":: #pageTitle">Word reminder</title>
 </head>
 <body>
-    <nav th:fragment="menu" class="navbar navbar-dark bg-primary navbar-expand-md">
+    <nav th:fragment="menu" class="navbar navbar-dark bg-primary navbar-expand-md fixed-top">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,13 +40,13 @@
             <div class="collapse navbar-collapse hide" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="/" class="nav-link">Strona główna</a>
+                        <a href="#mainPage" class="nav-link">Strona główna</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">O mnie</a>
+                        <a href="#aboutMe" class="nav-link">O mnie</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Kontakt</a>
+                        <a href="#contact" class="nav-link">Kontakt</a>
                     </li>
                 </ul>
             </div>

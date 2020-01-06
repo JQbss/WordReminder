@@ -6,6 +6,37 @@
 <body>
     <div th:insert="fragments/header :: menu">
     </div>
+    <div id="mainPage" class="wrapper page-header contentContainer my-auto">
+        <div class="container content-center">
+            <div class="tittle-brand my-auto">
+                <h1 class="tittle-text">Word Reminder</h1>
+            </div>
+            <h2 class="text-center mt-3">Stwórz swój własny zestaw słów, których chcesz się z nami uczyć!</h2>
+        </div>
+    </div>
+    <div id="aboutMe" class= "wrapper section-about-me">
+        <div class="container">
+            <h2 class="text-center text-center text-uppercase text-white about-me-header my-5">O mnie</h2>
+            <div class="row about-me-text text-justify">
+                <div class="col-lg-4 ml-auto text-white">
+                    <p class="text-center">Witam!</p>
+                    Skoro tutaj trafiłeś, to znaczy że chcesz się czegoś o mnie dowiedzieć. Mam na imię Jakub i
+                    jestem studentem Informatyki Stosowanej na Uniwersytecie Mikołaja Kopernika w Toruniu.
+                    Swoją przygodę z Javą zacząłęm w przerwę wakacyjną w 2019 roku.
+                </div>
+                <div class="col-lg-4 mr-auto text-white">
+                    Po kilku miesiącach nauki rozpocząłem naukę Springa, Spring Boota oraz
+                    Spring Security. Projekt, który masz przyjemność oglądać jest moim pierwszym projektem Webowym wykonanym samodzielnie. Jego założeniem jest
+                    uczenie się nowych słówek, które pierwszy raz miałeś styczność, ale również przypominania słownictwa, którym sam zarządzasz.
+                    <p>Serdecznie zapraszam!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="contact" class="wrapper section-contact">
+        <h2>Skontaktuj się ze mną</h2>
+    </div>
     <div th:insert="fragments/header :: scriptSection">
     </div>
 </body>
