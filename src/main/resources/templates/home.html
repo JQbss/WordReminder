@@ -4,9 +4,10 @@
     <title id="pageTitle">Strona główna</title>
 </head>
 <body>
+<main>
     <div th:insert="fragments/header :: menu">
     </div>
-    <div id="main" class="wrapper page-header contentContainer my-auto">
+    <div id="main" class="wrapper page-header contentContainer my-auto" role="main">
         <div class="container content-center">
             <div class="tittle-brand my-auto text-break">
                 <h1 class="tittle-text">Word Reminder</h1>
@@ -62,5 +63,6 @@
     </div>
     <div th:insert="fragments/footer :: footer">
     </div>
+</main>
 </body>
 </html>
