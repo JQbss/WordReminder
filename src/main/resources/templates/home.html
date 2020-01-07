@@ -6,16 +6,15 @@
 <body>
     <div th:insert="fragments/header :: menu">
     </div>
-    <div id="mainPage" class="wrapper page-header contentContainer my-auto">
+    <div id="main" class="wrapper page-header contentContainer my-auto">
         <div class="container content-center">
-            <div class="tittle-brand my-auto">
+            <div class="tittle-brand my-auto text-break">
                 <h1 class="tittle-text">Word Reminder</h1>
             </div>
             <h2 class="text-center mt-3">Stwórz swój własny zestaw słów, których chcesz się z nami uczyć!</h2>
         </div>
     </div>
     <div id="aboutMe" class= "wrapper section-about-me">
-        <div class="container">
             <h2 class="text-center text-center text-uppercase text-white about-me-header my-5">O mnie</h2>
             <div class="row about-me-text text-justify">
                 <div class="col-lg-4 ml-auto text-white">
@@ -33,11 +32,35 @@
             </div>
 
         </div>
-    </div>
     <div id="contact" class="wrapper section-contact">
-        <h2>Skontaktuj się ze mną</h2>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-5">
+                <div class="card card-signin my-5 card-body">
+                    <h5 class="card-title text-center">Wyślij wiadomość</h5>
+                    <form class="form-signin">
+                        <div class="form-label-group">
+                            <input type="text" id="userLogin" class="form-control" placeholder="Login" required autofocus>
+                            <label for="userLogin">Login</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="email" id="password" class="form-control" placeholder="Email" required>
+                            <label for="password">Email</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label for="message"></label>
+                            <textarea id="message" name="message" class="form-control text-area-contact" placeholder="Wpisz wiadomość..." required></textarea>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wyślij wiadomość</button>
+                        <hr class="my-4">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <div th:insert="fragments/header :: scriptSection">
+    </div>
+    <div th:insert="fragments/footer :: footer">
     </div>
 </body>
 </html>

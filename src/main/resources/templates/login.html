@@ -10,13 +10,13 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-5">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Zaloguj się</h5>
                         <form class="form-signin" th:action="@{/login}" method="post">
                             <div class="form-label-group">
-                                <input type="text" id="userLogin" class="form-control" placeholder="login" name="userLogin" required autofocus>
+                                <input type="text" id="userLogin" class="form-control" placeholder="Login" name="userLogin" required autofocus>
                                 <label for="userLogin">Login</label>
                             </div>
                             <div class="form-label-group">
@@ -43,6 +43,8 @@
         </div>
     </div>
     <div th:insert="fragments/header :: scriptSection">
+    </div>
+    <div th:insert="fragments/footer :: footer">
     </div>
 </body>
 </html>

@@ -15,11 +15,6 @@ import javax.validation.Valid;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
-    public String Home(){
-        return "home";
-    }
-
     UserService userService;
     UserRegisterValidator userRegisterValidator;
 
@@ -27,6 +22,12 @@ public class HomeController {
     public HomeController(UserServiceImpl userService, UserRegisterValidator userRegisterValidator) {
         this.userService = userService;
         this.userRegisterValidator = userRegisterValidator;
+    }
+
+
+    @GetMapping("/")
+    public String Home(){
+        return "home";
     }
 
     @GetMapping(value = "/register")
