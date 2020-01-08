@@ -1,14 +1,24 @@
 ﻿<!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: header">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="fragments/subpageheader :: header">
     <title id="pageTitle">Strona główna</title>
 </head>
 <body>
-<div th:insert="fragments/header :: menu">
-</div>
-<div th:insert="fragments/header :: scriptSection">
-</div>
-<div th:insert="fragments/footer :: footer">
-</div>
+    <div th:insert="fragments/subpageheader :: menu">
+    </div>
+    <div id="main" class="wrapper page-header contentContainer my-auto" role="main">
+        <div class="container content-center">
+            <div class="tittle-brand my-auto text-break">
+                <h3 class="text-dark" >Witaj! <span sec:authentication="name"></span></h3>
+            </div>
+            <h2 class="text-center mt-3">Stwórz swój własny zestaw słów, których chcesz się z nami uczyć!</h2>
+        </div>
+    </div>
+
+    <div th:insert="fragments/subpageheader :: scriptSection">
+    </div>
+    <div th:insert="fragments/footer :: footer">
+    </div>
 </body>
 </html>

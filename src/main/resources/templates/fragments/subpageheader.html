@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="webjars/font-awesome/5.12.0/css/all.css" />
+    <link rel="stylesheet" href="../css/styleForm.css">
+    <link rel="stylesheet" href="../css/mainPage.css">
+    <title th:include=":: #pageTitle">Word reminder</title>
+</head>
+<body>
+<nav th:fragment="menu" class="navbar navbar-dark bg-primary navbar-expand-md fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+        <i class="fa fa-user-graduate"></i>
+        <span class="d-none d-lg-inline">Word Reminder</span>
+    </a>
+    <div class="order-md-2">
+        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+            <li sec:authorize="isAuthenticated()"  class="nav-item order-2 order-md-1">
+                <form  name="logoutForm" th:action="@{/logout}" method="post">
+                    <button type="submit" class="nav-link btn btn-link px-0 py-0 ">
+                        <span class="d-none d-lg-inline">Wyloguj się</span>
+                        <i class="fa fa-sign-out-alt fa-fw fa-lg"></i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse hide" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Strona główna</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div th:fragment="scriptSection">
+    <script src="webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>

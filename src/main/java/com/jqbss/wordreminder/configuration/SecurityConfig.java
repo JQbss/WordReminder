@@ -23,10 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService(){
         return new UserDetailsServiceImpl();
-    };
+    }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/statics/**", "/css/**", "/js/**", "/images/**", "/incl/**","/webjars/**");
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login").permitAll()
                     .failureUrl("/login?error=true")
-                    .defaultSuccessUrl("/",true)
+                    .defaultSuccessUrl("/learn",true)
                     .usernameParameter("userLogin")
                     .passwordParameter("password")
                 .and().logout().permitAll().logoutSuccessUrl("/");

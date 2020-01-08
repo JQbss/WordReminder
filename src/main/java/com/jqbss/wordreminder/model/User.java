@@ -18,6 +18,8 @@ public class User{
     private String password;
     @ManyToMany
     private Set<Role> roles;
+    @OneToMany
+    private Set<UserWord> userWords;
 
     @Transient
     private String passwordConfirm;
@@ -68,6 +70,14 @@ public class User{
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    public Set<UserWord> getUserWords() {
+        return userWords;
+    }
+
+    public void setUserWords(Set<UserWord> userWords) {
+        this.userWords = userWords;
     }
 
     @Override
