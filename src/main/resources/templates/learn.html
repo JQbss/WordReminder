@@ -1,19 +1,26 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html >
 <html lang="pl" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/subpageheader}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:include="fragments/subpageheader :: header">
-    <title id="pageTitle">Strona główna</title>
+    <title id="pageTitle">Login</title>
+
 </head>
 <body>
-    <div th:insert="fragments/subpageheader :: menu">
+    <div th:insert="fragments/subpageheader :: menuTop">
     </div>
-    <div id="main" class="wrapper page-header contentContainer my-auto" role="main">
-        <div class="container content-center">
-            <div class="tittle-brand my-auto text-break">
-                <h3 class="text-dark" >Witaj! <span sec:authentication="name"></span></h3>
+    <div th:insert="fragments/subpageheader :: menuSider">
+    </div>
+
+    <div layout:fragment="content">
+            <div class="container content-center">
+                <div class="tittle-brand my-auto text-break">
+                    <h4 class="tittle-text">Witaj <span sec:authentication="name">userLogin</span></h4>
+                </div>
+                <h3 class="text-center mt-3">Aby rozpocząć wybierz z menu po lewej "Dodaj słowo".
+                    Gdy będziesz miał już kilka słów możesz wykonać test, który pozwoli Ci je utrwalić!</h3>
             </div>
-            <h2 class="text-center mt-3">Stwórz swój własny zestaw słów, których chcesz się z nami uczyć!</h2>
-        </div>
     </div>
 
     <div th:insert="fragments/subpageheader :: scriptSection">
