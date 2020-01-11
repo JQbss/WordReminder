@@ -1,0 +1,45 @@
+<!DOCTYPE html >
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/subpageheader}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="fragments/subpageheader :: header">
+    <title id="pageTitle">Dodaj słowo</title>
+
+</head>
+<body>
+<div th:insert="fragments/subpageheader :: menuTop">
+</div>
+<div th:insert="fragments/subpageheader :: menuSider">
+</div>
+
+<div layout:fragment="content">
+    <div class="container content-center">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card-signin py-0 px-0 bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Dodaj słowo</h5>
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input type="text" id="englishName" class="form-control" placeholder="Angielska nazwa" name="englishName" required autofocus>
+                                <label for="englishName">Angielska nazwa</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="polishName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
+                                <label for="polishName">Polska nazwa</label>
+                                <p class="text-danger ml-2" th:if="${#fields.hasErrors('englishName')}" th:errors="*{englishName}"></p>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Dodaj słowo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div th:insert="fragments/subpageheader :: scriptSection">
+</div>
+<div th:insert="fragments/footer :: footer">
+</div>
+</body>
+</html>

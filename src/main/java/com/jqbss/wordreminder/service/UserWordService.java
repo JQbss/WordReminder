@@ -10,4 +10,5 @@ public interface UserWordService {
     void deleteUserWord(long id);
     List<UserWord> getAllUserWord();
     UserWord getUserWord(long id);
+    UserWord getUserWordByEnglishName(String englishName);
 }

@@ -16,8 +16,11 @@ public class UserRegisterValidator implements Validator {
     private static final String LOGIN_PATTERN  = "^[a-zA-Z]+[a-zA-Z0-9.\\-_]{3,25}";
     private static final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9.,!@#$%^&*(){};\\-]{8,}$";
 
-    @Autowired
     UserService userService;
+
+    public UserRegisterValidator(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean supports(Class<?> aClass) {
