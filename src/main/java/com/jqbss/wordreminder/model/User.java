@@ -18,7 +18,7 @@ public class User{
     private String password;
     @ManyToMany
     private Set<Role> roles;
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<UserWord> userWords;
 
     @Transient

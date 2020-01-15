@@ -1,8 +1,7 @@
 <!DOCTYPE html >
 <html lang="pl" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/subpageheader}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      layout:decorate="~{fragments/subpageheader}">
 <head th:include="fragments/subpageheader :: header">
     <title id="pageTitle">Dodaj słowo</title>
 
@@ -19,14 +18,15 @@
                 <div class="card-signin py-0 px-0 bg-info">
                     <div class="card-body">
                         <h5 class="card-title text-center">Dodaj słowo</h5>
-                        <form class="form-signin" method="post">
+                        <!--/*@thymesVar id="userWord" type="com.jqbss.wordreminder.model.UserWord"*/-->
+                        <form class="form-signin" method="post" th:action="@{/addword}" th:object="${userWord}">
                             <div class="form-label-group">
-                                <input type="text" id="englishName" class="form-control" placeholder="Angielska nazwa" name="englishName" required autofocus>
-                                <label for="englishName">Angielska nazwa</label>
+                                <input th:field="*{englishName}" type="text" id="eName" class="form-control" placeholder="Angielska nazwa" name="englishName" required autofocus>
+                                <label for="eName">Angielska nazwa</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="polishName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
-                                <label for="polishName">Polska nazwa</label>
+                                <input th:field="*{polishName}" type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
+                                <label for="pName">Polska nazwa</label>
                                 <p class="text-danger ml-2" th:if="${#fields.hasErrors('englishName')}" th:errors="*{englishName}"></p>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Dodaj słowo</button>

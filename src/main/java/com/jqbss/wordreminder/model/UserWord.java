@@ -12,7 +12,7 @@ public class UserWord {
     private String polishName;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "user_id")
     private User user;
 
     public int getUserWordId() {

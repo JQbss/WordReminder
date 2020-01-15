@@ -1,6 +1,7 @@
 package com.jqbss.wordreminder.service;
 
 import com.jqbss.wordreminder.model.UserWord;
+import com.jqbss.wordreminder.model.User;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface UserWordService {
     List<UserWord> getAllUserWord();
     UserWord getUserWord(long id);
     UserWord getUserWordByEnglishName(String englishName);
+    UserWord getUserWordByEnglishNameAndUser(String englishName, User user);
 }

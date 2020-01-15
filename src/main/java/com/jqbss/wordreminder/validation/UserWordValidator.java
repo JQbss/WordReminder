@@ -1,7 +1,12 @@
 package com.jqbss.wordreminder.validation;
 
+import com.jqbss.wordreminder.model.User;
 import com.jqbss.wordreminder.model.UserWord;
+import com.jqbss.wordreminder.service.UserService;
 import com.jqbss.wordreminder.service.UserWordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -10,9 +15,11 @@ import org.springframework.validation.Validator;
 public class UserWordValidator implements Validator {
 
     UserWordService userWordService;
+    UserService userService;
 
-    public UserWordValidator(UserWordService userWordService) {
+    public UserWordValidator(UserWordService userWordService, UserService userService) {
         this.userWordService = userWordService;
+        this.userService = userService;
     }
 
     @Override
@@ -24,8 +31,9 @@ public class UserWordValidator implements Validator {
     public void validate(Object o, Errors errors) {
 
         UserWord userWord = (UserWord) o;
-
-        if(userWordService.getUserWordByEnglishName(userWord.getEnglishName())!=null){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUserLogin(auth.getName());
+        if(userWordService.getUserWordByEnglishNameAndUser(userWord.getEnglishName(),user)!=null){
             errors.rejectValue("englishName","error.englishName.busy");
         }
     }
