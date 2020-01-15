@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/subpageheader}">
+<head th:include="fragments/subpageheader :: header">
+    <title id="pageTitle">Lista słów</title>
+
+</head>
+<body>
+<div th:insert="fragments/subpageheader :: menuTop">
+</div>
+<div th:insert="fragments/subpageheader :: menuSider">
+</div>
+
+<div layout:fragment="content">
+    <div class="container content-center d-flex justify-content-center">
+    <table class="table table-striped w-auto">
+        <thead>
+            <tr class="bg-info">
+                <th>
+                    Angielskie słowo
+                </th>
+                <th>
+                    Tłumaczenie
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="word: ${words}" class="table-info ">
+                <th scope="row" th:text="${word.englishName}"></th>
+                <th th:text="${word.polishName}"></th>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<div th:insert="fragments/subpageheader :: scriptSection">
+</div>
+<div th:insert="fragments/footer :: footer">
+</div>
+</body>
+</html>

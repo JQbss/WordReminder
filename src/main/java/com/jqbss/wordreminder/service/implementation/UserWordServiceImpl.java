@@ -41,8 +41,8 @@ public class UserWordServiceImpl implements UserWordService {
     }
 
     @Override
-    public List<UserWord> getAllUserWord() {
-        return userWordRepository.findAll();
+    public List<UserWord> getAllUserWordsByUser(User user) {
+        return userWordRepository.findByUser(user);
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface UserWordService {
 
     UserWord addUserWord(UserWord userWord);
     void deleteUserWord(long id);
-    List<UserWord> getAllUserWord();
+    List<UserWord> getAllUserWordsByUser(User user);
     UserWord getUserWord(long id);
     UserWord getUserWordByEnglishName(String englishName);
     UserWord getUserWordByEnglishNameAndUser(String englishName, User user);
