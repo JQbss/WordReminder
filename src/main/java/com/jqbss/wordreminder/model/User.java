@@ -21,6 +21,10 @@ public class User{
     @OneToMany(mappedBy = "user")
     private Set<UserWord> userWords;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Quiz> Quizzes;
+
+
     @Transient
     private String passwordConfirm;
 
@@ -78,6 +82,14 @@ public class User{
 
     public void setUserWords(Set<UserWord> userWords) {
         this.userWords = userWords;
+    }
+
+    public Set<Quiz> getQuizzes() {
+        return Quizzes;
+    }
+
+    public void setQuizzes(Set<Quiz> quizzes) {
+        Quizzes = quizzes;
     }
 
     @Override

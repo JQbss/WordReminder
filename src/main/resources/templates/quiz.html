@@ -1,0 +1,41 @@
+<!DOCTYPE html >
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/subpageheader}">
+<head th:include="fragments/subpageheader :: header">
+    <title id="pageTitle">Quiz</title>
+
+</head>
+<body>
+<div th:insert="fragments/subpageheader :: menuTop">
+</div>
+<div th:insert="fragments/subpageheader :: menuSider">
+</div>
+
+<div layout:fragment="content">
+    <!--/*@thymesVar id="quiz" type="com.jqbss.wordreminder.model.Quiz"*/-->
+    <div class="container content-center" th:object="${quiz}">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card-signin py-0 px-0 bg-info">
+                <p class="float-right my-2 mx-3" th:text="${quiz.getCurrentNumberOfQuestion()+'/'+quiz.getNumberOfQuestions()}"></p>
+                <div class="card-body">
+                    <h5 class="card-title quiz-text-color my-2" th:text="${quiz.getCurrentQuestion()}"></h5>
+                    <form th:action="@{/quiz/{quizId}(quizId=${quiz.getQuizId()})}" class="form-signin" method="Get">
+                        <div class="form-label-group">
+                            <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
+                            <label for="pName">Polska nazwa</label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Następne</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/subpageheader :: scriptSection">
+</div>
+<div th:insert="fragments/footer :: footer">
+</div>
+</body>
+</html>

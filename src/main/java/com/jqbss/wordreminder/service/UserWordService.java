@@ -1,9 +1,12 @@
 package com.jqbss.wordreminder.service;
 
+import com.jqbss.wordreminder.model.Question;
+import com.jqbss.wordreminder.model.Quiz;
 import com.jqbss.wordreminder.model.UserWord;
 import com.jqbss.wordreminder.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserWordService {
 
