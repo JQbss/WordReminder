@@ -20,7 +20,7 @@
                 <p class="float-right my-2 mx-3" th:text="${quiz.getCurrentNumberOfQuestion()+'/'+quiz.getNumberOfQuestions()}"></p>
                 <div class="card-body">
                     <h5 class="card-title quiz-text-color my-2" th:text="${quiz.getCurrentQuestion()}"></h5>
-                    <form th:action="@{/quiz/{quizId}(quizId=${quiz.getQuizId()})}" class="form-signin" method="Get">
+                    <form th:action="@{/quiz/{quizId}(quizId=${quiz.getQuizId()})}" class="form-signin" method="post">
                         <div class="form-label-group">
                             <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
                             <label for="pName">Polska nazwa</label>

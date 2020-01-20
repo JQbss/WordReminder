@@ -86,26 +86,14 @@ public class LearnController {
         return mv;
     }
 
-    @PostMapping("/quiz")
-    public ModelAndView QuizControllerPost(Quiz quiz){
+    @PostMapping("/quiz/{id}")
+    public ModelAndView QuizControllerPost(@PathVariable("id") long id){
         ModelAndView mv = new ModelAndView();
-        quiz = quizService.getQuiz(quiz.getQuizId());
+
+        Quiz quiz = quizService.getQuiz(id);
         quiz.setCurrentNumberOfQuestion(quiz.getCurrentNumberOfQuestion()+1);
         quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
         quizService.updateQuiz(quiz);
-
-        mv.setViewName("quiz");
-        mv.addObject(quiz);
-        return mv;
-    }
-    @GetMapping("/quiz/{id}")
-    public ModelAndView QuizController(@PathVariable("id") long id){
-
-        ModelAndView mv = new ModelAndView();
-
-        Quiz quiz = quizService.addQuiz(new Quiz());
-        questionRepository.saveAll(quiz.getQuestions());
-        quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
         mv.setViewName("quiz");
         mv.addObject(quiz);
         return mv;
