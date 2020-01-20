@@ -92,10 +92,17 @@ public class LearnController {
 
         Quiz quiz = quizService.getQuiz(id);
         quiz.setCurrentNumberOfQuestion(quiz.getCurrentNumberOfQuestion()+1);
-        quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
-        quizService.updateQuiz(quiz);
-        mv.setViewName("quiz");
-        mv.addObject(quiz);
+        if(quiz.getCurrentNumberOfQuestion()<=quiz.getNumberOfQuestions())
+        {
+            quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
+            quizService.updateQuiz(quiz);
+            mv.setViewName("quiz");
+            mv.addObject(quiz);
+        }
+        else
+        {
+            mv.setViewName("summary");
+        }
         return mv;
     }
 }

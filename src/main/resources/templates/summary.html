@@ -1,0 +1,26 @@
+<!DOCTYPE html >
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/subpageheader}">
+<head th:include="fragments/subpageheader :: header">
+    <title id="pageTitle">Podsumowanie Quizu</title>
+
+</head>
+<body>
+<main>
+<div th:insert="fragments/subpageheader :: menuTop">
+</div>
+<div th:insert="fragments/subpageheader :: menuSider">
+</div>
+
+<div layout:fragment="content">
+    Podsumowanie
+</div>
+
+<div th:insert="fragments/subpageheader :: scriptSection">
+</div>
+<div th:insert="fragments/footer :: footer">
+</div>
+</main>
+</body>
+</html>

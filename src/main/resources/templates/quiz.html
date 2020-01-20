@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<main>
 <div th:insert="fragments/subpageheader :: menuTop">
 </div>
 <div th:insert="fragments/subpageheader :: menuSider">
@@ -25,7 +26,10 @@
                             <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
                             <label for="pName">Polska nazwa</label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Następne</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                            <span th:if="${quiz.getCurrentNumberOfQuestion()==quiz.getNumberOfQuestions()}">Zakończ</span>
+                            <span th:unless="${quiz.getCurrentNumberOfQuestion()==quiz.getNumberOfQuestions()}">Następne</span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -37,5 +41,6 @@
 </div>
 <div th:insert="fragments/footer :: footer">
 </div>
+</main>
 </body>
 </html>
