@@ -53,7 +53,7 @@ public class QuizServiceImpl implements QuizService {
             }
         }
         else{
-            quiz.setNumberOfQuestions(10);
+            quiz.setNumberOfQuestions(1);
             Random rand = new Random();
             for(int i=0; i<quiz.getNumberOfQuestions();i++){
                 int randomIndex = rand.nextInt(userWords.size());

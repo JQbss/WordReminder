@@ -1,9 +1,6 @@
 package com.jqbss.wordreminder.controller;
 
-import com.jqbss.wordreminder.model.Question;
-import com.jqbss.wordreminder.model.Quiz;
-import com.jqbss.wordreminder.model.UserWord;
-import com.jqbss.wordreminder.model.User;
+import com.jqbss.wordreminder.model.*;
 import com.jqbss.wordreminder.reposiotory.QuestionRepository;
 import com.jqbss.wordreminder.reposiotory.UserRepository;
 import com.jqbss.wordreminder.service.QuizService;
@@ -23,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LearnController {
@@ -103,6 +103,17 @@ public class LearnController {
         {
             mv.setViewName("summary");
         }
+        return mv;
+    }
+    @GetMapping("/summary/{id}")
+    public ModelAndView QuizSummary(@PathVariable("id") long id){
+        ModelAndView mv = new ModelAndView();
+
+        Quiz quiz = quizService.getQuiz(id);
+        HashMap summaryHashMap = new HashMap<Question, Answer>();
+        summaryHashMap.put(quiz.getQuestions(), quiz.getAnswers());
+        mv.addObject(summaryHashMap);
+        mv.setViewName("summary");
         return mv;
     }
 }
