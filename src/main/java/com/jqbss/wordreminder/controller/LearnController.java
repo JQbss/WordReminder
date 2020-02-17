@@ -1,6 +1,7 @@
 package com.jqbss.wordreminder.controller;
 
 import com.jqbss.wordreminder.model.*;
+import com.jqbss.wordreminder.reposiotory.AnswerRepository;
 import com.jqbss.wordreminder.reposiotory.QuestionRepository;
 import com.jqbss.wordreminder.reposiotory.UserRepository;
 import com.jqbss.wordreminder.service.QuizService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.HashMap;
@@ -32,14 +34,16 @@ public class LearnController {
     UserService userService;
     QuizService quizService;
     QuestionRepository questionRepository;
+    AnswerRepository answerRepository;
 
     public LearnController(UserWordService userWordService, UserWordValidator userWordValidator,
-                           UserService userService, QuizService quizService, QuestionRepository questionRepository) {
+                           UserService userService, QuizService quizService, QuestionRepository questionRepository, AnswerRepository answerRepository) {
         this.userWordService = userWordService;
         this.userWordValidator = userWordValidator;
         this.userService = userService;
         this.quizService = quizService;
         this.questionRepository = questionRepository;
+        this.answerRepository = answerRepository;
     }
 
     @GetMapping("/learn")
@@ -80,6 +84,7 @@ public class LearnController {
 
         Quiz quiz = quizService.addQuiz(new Quiz());
         questionRepository.saveAll(quiz.getQuestions());
+        answerRepository.saveAll(quiz.getAnswers());
         quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
         mv.setViewName("quiz");
         mv.addObject(quiz);
@@ -87,21 +92,30 @@ public class LearnController {
     }
 
     @PostMapping("/quiz/{id}")
-    public ModelAndView QuizControllerPost(@PathVariable("id") long id){
+    public ModelAndView QuizControllerPost(@PathVariable("id") long id, HttpServletRequest request){
         ModelAndView mv = new ModelAndView();
 
         Quiz quiz = quizService.getQuiz(id);
+
+        List<Answer> answers = answerRepository.findByQuiz(quiz);
+        Answer answer = answers.get(quiz.getCurrentNumberOfQuestion()-1);
+        answer.setPolishName(request.getParameter("currentAnswer"));
+        answers.set(quiz.getCurrentNumberOfQuestion()-1,answer);
+        answerRepository.save(answer);
+
         quiz.setCurrentNumberOfQuestion(quiz.getCurrentNumberOfQuestion()+1);
         if(quiz.getCurrentNumberOfQuestion()<=quiz.getNumberOfQuestions())
         {
             quiz.setCurrentQuestion(quiz.getQuestions().get(quiz.getCurrentNumberOfQuestion()-1).getEnglishName());
+
+            quiz.getAnswers().get(quiz.getCurrentNumberOfQuestion()-1).setPolishName(request.getParameter("currentAnswer"));
             quizService.updateQuiz(quiz);
             mv.setViewName("quiz");
             mv.addObject(quiz);
         }
         else
         {
-            mv.setViewName("summary");
+           return new ModelAndView("redirect:/summary/"+id);
         }
         return mv;
     }
@@ -110,9 +124,7 @@ public class LearnController {
         ModelAndView mv = new ModelAndView();
 
         Quiz quiz = quizService.getQuiz(id);
-        HashMap summaryHashMap = new HashMap<Question, Answer>();
-        summaryHashMap.put(quiz.getQuestions(), quiz.getAnswers());
-        mv.addObject(summaryHashMap);
+        mv.addObject(quiz);
         mv.setViewName("summary");
         return mv;
     }

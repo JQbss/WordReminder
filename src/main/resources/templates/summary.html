@@ -27,6 +27,10 @@
             </tr>
             </thead>
             <tbody>
+                <tr th:each="question: ${quiz.questions}" class="table-info">
+                    <th scope="row" th:text="${question.englishName}"></th>
+                    <th scope="row" th:text="${question.polishName}"></th>
+                </tr>
             </tbody>
         </table>
         <table class="table table-striped w-auto float-left">
@@ -38,6 +42,9 @@
             </tr>
             </thead>
             <tbody>
+                <tr th:each="anser: ${quiz.answers}" class="table-info">
+                    <th scope="row" th:text="${anser.polishName}"></th>
+                </tr>
             </tbody>
         </table>
     </div>

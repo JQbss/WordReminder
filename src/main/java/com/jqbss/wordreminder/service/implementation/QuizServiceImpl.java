@@ -1,9 +1,6 @@
 package com.jqbss.wordreminder.service.implementation;
 
-import com.jqbss.wordreminder.model.Question;
-import com.jqbss.wordreminder.model.Quiz;
-import com.jqbss.wordreminder.model.User;
-import com.jqbss.wordreminder.model.UserWord;
+import com.jqbss.wordreminder.model.*;
 import com.jqbss.wordreminder.reposiotory.AnswerRepository;
 import com.jqbss.wordreminder.reposiotory.QuestionRepository;
 import com.jqbss.wordreminder.reposiotory.QuizRepository;
@@ -41,6 +38,7 @@ public class QuizServiceImpl implements QuizService {
 
         List<UserWord> userWords = userWordRepository.findByUser(user);
         LinkedList<Question> questions = new LinkedList<>();
+        LinkedList<Answer> answers = new LinkedList<>();
         if(userWords.size()<10)
         {
             quiz.setNumberOfQuestions(userWords.size());
@@ -50,10 +48,13 @@ public class QuizServiceImpl implements QuizService {
                 question.setPolishName(word.getPolishName());
                 question.setQuiz(quiz);
                 questions.add(question);
+                Answer answer = new Answer();
+                answer.setQuiz(quiz);
+                answers.add(answer);
             }
         }
         else{
-            quiz.setNumberOfQuestions(1);
+            quiz.setNumberOfQuestions(10);
             Random rand = new Random();
             for(int i=0; i<quiz.getNumberOfQuestions();i++){
                 int randomIndex = rand.nextInt(userWords.size());
@@ -63,12 +64,16 @@ public class QuizServiceImpl implements QuizService {
                 question.setQuiz(quiz);
                 questions.add(question);
                 userWords.remove(randomIndex);
+                Answer answer = new Answer();
+                answer.setQuiz(quiz);
+                answers.add(answer);
             }
         }
 
         quiz.setCurrentNumberOfQuestion(1);
         quiz.setUser(user);
         quiz.setQuestions(questions);
+        quiz.setAnswers(answers);
         return quizRepository.save(quiz);
     }
 

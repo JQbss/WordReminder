@@ -23,7 +23,8 @@
                     <h5 class="card-title quiz-text-color my-2" th:text="${quiz.getCurrentQuestion()}"></h5>
                     <form th:action="@{/quiz/{quizId}(quizId=${quiz.getQuizId()})}" class="form-signin" method="post">
                         <div class="form-label-group">
-                            <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="polishName" required>
+                            <!--/*@thymesVar id="Answer" type="com.jqbss.wordreminder.model.Answer"*/-->
+                            <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="currentAnswer" required>
                             <label for="pName">Polska nazwa</label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">

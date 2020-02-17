@@ -28,6 +28,9 @@ public class Quiz {
 
     @Transient
     private String currentQuestion;
+    @Transient
+    private String currentAnswer;
+
 
     public long getQuizId() {
         return quizId;
@@ -83,5 +86,20 @@ public class Quiz {
 
     public void setCurrentQuestion(String currentQuestion) {
         this.currentQuestion = currentQuestion;
+    }
+
+    public void setQuizId(long quizId) {
+        this.quizId = quizId;
+    }
+
+    public String getCurrentAnswer() {
+        return currentAnswer;
+    }
+
+    public void setCurrentAnswer(String currentAnswer) {
+        this.currentAnswer = currentAnswer;
+    }
+    public void addAnswer(Answer answer){
+        Answers.add(answer);
     }
 }

@@ -8,7 +8,6 @@ public class Answer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answerId;
-    private String englishName;
     private String polishName;
 
     @ManyToOne
@@ -29,14 +28,6 @@ public class Answer{
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
-    }
-
-    public String getEnglishName() {
-        return englishName;
-    }
-
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
     }
 
     public String getPolishName() {
