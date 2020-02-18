@@ -98,8 +98,21 @@ public class LearnController {
         Quiz quiz = quizService.getQuiz(id);
 
         List<Answer> answers = answerRepository.findByQuiz(quiz);
+        List<Question> questions = questionRepository.findByQuiz(quiz);
+
         Answer answer = answers.get(quiz.getCurrentNumberOfQuestion()-1);
+        Question question = questions.get(quiz.getCurrentNumberOfQuestion()-1);
+
         answer.setPolishName(request.getParameter("currentAnswer"));
+
+        if(answer.getPolishName().equals(question.getPolishName()))
+        {
+            answer.setCorrect(true);
+        }
+        else {
+            answer.setCorrect(false);
+        }
+
         answers.set(quiz.getCurrentNumberOfQuestion()-1,answer);
         answerRepository.save(answer);
 

@@ -9,6 +9,7 @@ public class Answer{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answerId;
     private String polishName;
+    private boolean isCorrect;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")
@@ -36,5 +37,13 @@ public class Answer{
 
     public void setPolishName(String polishName) {
         this.polishName = polishName;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
     }
 }
