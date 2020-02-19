@@ -58,10 +58,9 @@ public class LearnController {
 
     @PostMapping("/addword")
     public String AddWord(@Valid UserWord userWord, BindingResult bindingResult){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByUserLogin(auth.getName());
-        userWord.setUser(user);
+        userWord.setUser(getUser());
         userWordValidator.validate(userWord,bindingResult);
+
         if(bindingResult.hasErrors()){
             return "addword";
         }
@@ -72,9 +71,8 @@ public class LearnController {
     @GetMapping("/allwords")
     public String AllWords(Model model)
     {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByUserLogin(auth.getName());
-        model.addAttribute("words", userWordService.getAllUserWordsByUser(user));
+
+        model.addAttribute("words", userWordService.getAllUserWordsByUser(getUser()));
         return "allwords";
     }
 
@@ -140,5 +138,10 @@ public class LearnController {
         mv.addObject(quiz);
         mv.setViewName("summary");
         return mv;
+    }
+
+    private User getUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return userService.findByUserLogin(auth.getName());
     }
 }
