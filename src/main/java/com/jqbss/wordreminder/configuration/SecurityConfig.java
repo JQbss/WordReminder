@@ -47,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/learn",true)
                     .usernameParameter("userLogin")
                     .passwordParameter("password")
-                .and().logout().permitAll().logoutSuccessUrl("/");
+                .and().logout().permitAll().logoutSuccessUrl("/")
+                .and().rememberMe().key("uniqueAndSecret").tokenValiditySeconds(1200).rememberMeParameter("remember-me");
     }
     @Override
     @Autowired
