@@ -58,7 +58,7 @@ public class LearnController {
 
     @PostMapping("/addword")
     public String AddWord(@Valid UserWord userWord, BindingResult bindingResult){
-        userWord.setUser(getUser());
+        userWord.setUser(userService.getCurrentLoggedUser());
         userWordValidator.validate(userWord,bindingResult);
 
         if(bindingResult.hasErrors()){
@@ -72,7 +72,7 @@ public class LearnController {
     public String AllWords(Model model)
     {
 
-        model.addAttribute("words", userWordService.getAllUserWordsByUser(getUser()));
+        model.addAttribute("words", userWordService.getAllUserWordsByUser(userService.getCurrentLoggedUser()));
         return "allwords";
     }
 
@@ -138,10 +138,5 @@ public class LearnController {
         mv.addObject(quiz);
         mv.setViewName("summary");
         return mv;
-    }
-
-    private User getUser(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userService.findByUserLogin(auth.getName());
     }
 }

@@ -46,4 +46,5 @@ public class Answer{
     public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
+
 }

@@ -6,6 +6,8 @@ import com.jqbss.wordreminder.reposiotory.RoleRepository;
 import com.jqbss.wordreminder.reposiotory.UserRepository;
 import com.jqbss.wordreminder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +65,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUserEmail(String email) {
         return userRepository.findByUserEmail(email);
+    }
+
+    @Override
+    public User getCurrentLoggedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return findByUserLogin(auth.getName());
     }
 }
