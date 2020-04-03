@@ -24,6 +24,12 @@ public class User{
     @OneToMany(mappedBy = "user")
     private Set<Quiz> Quizzes;
 
+    public User(Long userId, String userLogin, String userEmail, String password) {
+        this.userId = userId;
+        this.userLogin = userLogin;
+        this.userEmail = userEmail;
+        this.password = password;
+    }
 
     @Transient
     private String passwordConfirm;
