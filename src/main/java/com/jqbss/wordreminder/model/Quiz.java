@@ -36,10 +36,6 @@ public class Quiz {
         return quizId;
     }
 
-    public void setQuizId(int quizId) {
-        this.quizId = quizId;
-    }
-
     public User getUser() {
         return user;
     }

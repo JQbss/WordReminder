@@ -12,7 +12,7 @@ public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private long userId;
     private String userLogin;
     private String userEmail;
     private String password;
@@ -31,14 +31,18 @@ public class User{
         this.password = password;
     }
 
+    public User(){
+
+    }
+
     @Transient
     private String passwordConfirm;
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
