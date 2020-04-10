@@ -95,7 +95,4 @@ public class Quiz {
     public void setCurrentAnswer(String currentAnswer) {
         this.currentAnswer = currentAnswer;
     }
-    public void addAnswer(Answer answer){
-        Answers.add(answer);
-    }
 }

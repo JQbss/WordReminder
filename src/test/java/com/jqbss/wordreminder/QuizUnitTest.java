@@ -3,6 +3,7 @@ package com.jqbss.wordreminder;
 import com.jqbss.wordreminder.model.Answer;
 import com.jqbss.wordreminder.model.Question;
 import com.jqbss.wordreminder.model.Quiz;
+import com.jqbss.wordreminder.model.User;
 import com.jqbss.wordreminder.reposiotory.AnswerRepository;
 import com.jqbss.wordreminder.reposiotory.QuestionRepository;
 import com.jqbss.wordreminder.reposiotory.QuizRepository;
@@ -30,14 +31,13 @@ public class QuizUnitTest {
     @MockBean
     private QuizRepository quizRepository;
 
-    private List<Question> questionList = new LinkedList<>();
-    private List<Answer> answerList = new LinkedList<>();
+    private LinkedList<Question> questionList = new LinkedList<>();
+    private LinkedList<Answer> answerList = new LinkedList<>();
 
     private Quiz quiz = new Quiz();
 
     @Test
-    @Before
-    public void setQuestionTest(){
+    public LinkedList<Question> setQuestionTest(){
         Question question = new Question();
         int id=1;
         String polishName = "angielski";
@@ -51,11 +51,11 @@ public class QuizUnitTest {
         assertEquals(englishName, question.getEnglishName());
 
         questionList.add(question);
+        return questionList;
     }
 
     @Test
-    @Before
-    public void setAnswerTest(){
+    public LinkedList<Answer> setAnswerTest(){
         Answer answer = new Answer();
         int id = 1;
         String polishName = "angielski";
@@ -68,10 +68,13 @@ public class QuizUnitTest {
         assertEquals(polishName, answer.getPolishName());
         assertTrue(answer.isCorrect());
         answerList.add(answer);
+        return answerList;
     }
 
     @Test
     void setQuizTest(){
+
+        User user = new User(123L, "test", "test@test.pl", "qwe123");
 
         long id = 111;
         int numberOfQuestions = 0;
@@ -80,13 +83,14 @@ public class QuizUnitTest {
         int currentNumberOfQuestion = 0;
 
 
+        quiz.setUser(user);
         quiz.setQuizId(id);
-        quiz.setAnswers(answerList);
+        quiz.setAnswers(setAnswerTest());
         for (Answer answer: answerList) {
             answer.setQuiz(quiz);
             assertEquals(quiz,answer.getQuiz());
         }
-        quiz.setQuestions(questionList);
+        quiz.setQuestions(setQuestionTest());
         for(Question question: questionList){
             question.setQuiz(quiz);
             assertEquals(quiz,question.getQuiz());
@@ -104,6 +108,7 @@ public class QuizUnitTest {
         assertEquals(currentAnswer, quiz.getCurrentAnswer());
         assertEquals(currentQuestion,quiz.getCurrentQuestion());
         assertEquals(currentNumberOfQuestion,quiz.getCurrentNumberOfQuestion());
+        assertEquals(user,quiz.getUser());
     }
 
     @Test
