@@ -7,7 +7,7 @@ public class UserWord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userWordId;
+    private long userWordId;
     private String englishName;
     private String polishName;
 
@@ -15,7 +15,7 @@ public class UserWord {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public int getUserWordId() {
+    public long getUserWordId() {
         return userWordId;
     }
 

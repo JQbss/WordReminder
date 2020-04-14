@@ -37,8 +37,10 @@ public class UserWordServiceImpl implements UserWordService {
     public UserWord addUserWord(UserWord userWord) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUserLogin(auth.getName());
-        user.setUserWords(new HashSet<>(Collections.singletonList(userWord)));
-        userService.updateUser(user);
+        if(user != null) {
+            user.setUserWords(new HashSet<>(Collections.singletonList(userWord)));
+            userService.updateUser(user);
+        }
         return userWordRepository.save(userWord);
     }
 

@@ -16,3 +16,7 @@ body {
 .quiz-text-color{
     color: #080D40!important;
 }
+
+.th-summary{
+    height: 50px !important;
+}

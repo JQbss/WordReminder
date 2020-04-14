@@ -24,7 +24,7 @@
                     <form th:action="@{/quiz/{quizId}(quizId=${quiz.getQuizId()})}" class="form-signin" method="post">
                         <div class="form-label-group">
                             <!--/*@thymesVar id="Answer" type="com.jqbss.wordreminder.model.Answer"*/-->
-                            <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="currentAnswer" required>
+                            <input type="text" id="pName" class="form-control" placeholder="Polska nazwa" name="currentAnswer" autocomplete="off" autofocus>
                             <label for="pName">Polska nazwa</label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">

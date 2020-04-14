@@ -8,52 +8,52 @@
 </head>
 <body>
 <main>
-<div th:insert="fragments/subpageheader :: menuTop">
-</div>
-<div th:insert="fragments/subpageheader :: menuSider">
-</div>
-
-<div layout:fragment="content">
-    <div class="container d-flex justify-content-center my-5">
-        <table class="table table-striped w-auto float-left">
-            <thead>
-            <tr class="bg-info">
-                <th>
-                    Angielskie słowo
-                </th>
-                <th>
-                    Poprawna odpowiedź
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr th:each="question: ${quiz.questions}" class="table-info">
-                    <th scope="row" th:text="${question.englishName}"></th>
-                    <th scope="row" th:text="${question.polishName}"></th>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-striped w-auto float-left">
-            <thead>
-            <tr class="bg-info">
-                <th>
-                    Twoja odpowiedź
-                </th>
-                <th class="text-center">
-                    #
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr th:each="answer: ${quiz.answers}" class="table-info">
-                    <th scope="row" th:text="${answer.polishName}"></th>
-                    <th scope="row" th:if="${answer.correct==true}" class="fa fa-check d-table-cell bg-success align-middle text-center"></th>
-                    <th scope="row" th:unless="${answer.correct==true}" class="fa fa-minus d-table-cell bg-danger align-middle text-center"></th>
-                </tr>
-            </tbody>
-        </table>
+    <div th:insert="fragments/subpageheader :: menuTop">
     </div>
-</div>
+    <div th:insert="fragments/subpageheader :: menuSider">
+    </div>
+
+    <div layout:fragment="content">
+        <div class="container d-flex justify-content-center my-5">
+            <table class="table table-striped w-auto float-left">
+                <thead>
+                <tr class="bg-info">
+                    <th class="th-summary">
+                        Angielskie słowo
+                    </th>
+                    <th class="th-summary">
+                        Poprawna odpowiedź
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="question: ${quiz.questions}" class="table-info">
+                        <th scope="row" th:text="${question.englishName}" class="th-summary"></th>
+                        <th scope="row" th:text="${question.polishName}" class="th-summary"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped w-auto float-left">
+                <thead>
+                <tr class="bg-info">
+                    <th class="th-summary">
+                        Twoja odpowiedź
+                    </th>
+                    <th class="text-center th-summary">
+                        #
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="answer: ${quiz.answers}" class="table-info">
+                        <th class="th-summary" scope="row" th:text="${answer.polishName}"></th>
+                        <th scope="row" th:if="${answer.correct==true}" class="fa fa-check d-table-cell bg-success align-middle text-center th-summary"></th>
+                        <th th:unless="${answer.correct==true}" class="fa fa-minus d-table-cell bg-danger align-middle text-center th-summary"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </main>
 </body>
