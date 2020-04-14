@@ -4,18 +4,14 @@ import com.jqbss.wordreminder.model.Answer;
 import com.jqbss.wordreminder.model.Question;
 import com.jqbss.wordreminder.model.Quiz;
 import com.jqbss.wordreminder.model.User;
-import com.jqbss.wordreminder.reposiotory.AnswerRepository;
-import com.jqbss.wordreminder.reposiotory.QuestionRepository;
 import com.jqbss.wordreminder.reposiotory.QuizRepository;
 import com.jqbss.wordreminder.service.QuizService;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -31,13 +27,13 @@ public class QuizUnitTest {
     @MockBean
     private QuizRepository quizRepository;
 
-    private LinkedList<Question> questionList = new LinkedList<>();
+    private static LinkedList<Question> questionList = new LinkedList<>();
     private LinkedList<Answer> answerList = new LinkedList<>();
 
     private Quiz quiz = new Quiz();
 
     @Test
-    public LinkedList<Question> setQuestionTest(){
+    public static LinkedList<Question> setQuestionTest(){
         Question question = new Question();
         int id=1;
         String polishName = "angielski";

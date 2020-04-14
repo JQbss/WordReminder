@@ -102,14 +102,4 @@ public class User{
         Quizzes = quizzes;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userLogin='" + userLogin + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
 }

@@ -1,5 +1,6 @@
 package com.jqbss.wordreminder;
 
+import com.jqbss.wordreminder.model.Role;
 import com.jqbss.wordreminder.model.User;
 import com.jqbss.wordreminder.reposiotory.UserRepository;
 import com.jqbss.wordreminder.service.UserService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -65,9 +68,13 @@ public class UserUnitTest {
         verify(userRepository, times(1)).deleteById(123L);
     }
 
+
+
     @Test
     public void setUserTest(){
         User user = new User();
+        Set<Role> roles = new HashSet<>();
+        roles.add(RoleUnitTest.setRoleTest());
 
         long id = 123L;
         String login = "Test";
@@ -80,13 +87,13 @@ public class UserUnitTest {
         user.setUserEmail(email);
         user.setPassword(password);
         user.setPasswordConfirm(passwordConfirm);
-
+        user.setRoles(roles);
 
         assertEquals(login,user.getUserLogin());
         assertEquals(email,user.getUserEmail());
         assertEquals(password,user.getPassword());
         assertEquals(passwordConfirm, user.getPasswordConfirm());
         assertEquals(id,user.getUserId());
-
+        assertEquals(1,user.getRoles().size());
     }
 }
